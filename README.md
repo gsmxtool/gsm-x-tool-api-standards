@@ -153,7 +153,7 @@ order needs.
           "GROUPNAME": "Samsung FRP",
           "GROUPTYPE": "IMEI",
           "SERVICES": {
-            "57": {
+            "1203": {
               "SERVICEID": "1203",
               "SERVICETYPE": "IMEI",
               "SERVER": "0",
@@ -202,8 +202,10 @@ order needs.
 `fieldtype` is one of Dhru's names (`text`, `dropdown`, `radio`, …); for
 `dropdown` and `radio`, `fieldoptions` lists the choices separated by commas.
 
-> The keys of `SERVICES` are internal row numbers. Always order with
-> `SERVICEID`.
+> `SERVICES` is keyed by `SERVICEID`, as the Dhru standard keys it. In the
+> rare case two services in one group share a `SERVICEID`, the second is
+> keyed `row-<n>` instead, so neither hides the other — order with the
+> `SERVICEID` field and both cases are covered.
 
 ### placeimeiorder
 
@@ -336,7 +338,7 @@ Every refusal arrives as `ERROR[0].MESSAGE`.
 | `This account is not active`                                   | Your account is suspended                                     |
 | `Unauthorized IP address`                                      | Request from an IP other than the locked one ([IP lock](#ip-lock)) |
 | `Invalid Action`                                               | Unknown `action`                                              |
-| `You are calling this API too frequently! Please try after N minutes.` | `imeiservicelist` asked for within 5 minutes           |
+| `The service list can be fetched once every 5 minutes. Try again in N minutes.` | `imeiservicelist` asked for again within 5 minutes |
 | `Missing or invalid parameters`                                | `parameters` missing or not readable                          |
 | `Service ID is required`                                       | No `ID` in the order                                          |
 | `Invalid service ID`                                           | No service on sale with that `SERVICEID`                      |
